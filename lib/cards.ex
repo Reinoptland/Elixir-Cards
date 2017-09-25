@@ -13,6 +13,14 @@ defmodule Cards do
 
   """
   def hello do
-    :world
+    "hi there"
+  end
+
+  def create_deck do
+    ["Ace", "Two", "Three"]
+  end
+
+  def shuffle(deck) do
+    Enum.take_random(deck, length(deck))
   end
 end
