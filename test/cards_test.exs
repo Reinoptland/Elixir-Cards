@@ -25,4 +25,10 @@ defmodule CardsTest do
     assert Cards.contains?(["Ace", "Two", "Three"], "Ace") == true
     assert Cards.contains?(["Ace", "Two", "Three"], "King") == false
   end
+
+  test "save a deck by writing it to a file and load it again" do
+    File.rm("deck_1")
+    assert Cards.save_deck(["Ace", "Two", "Three"], "deck_1") == :ok
+    assert Cards.load_deck("deck_1") == ["Ace", "Two", "Three"]
+  end
 end

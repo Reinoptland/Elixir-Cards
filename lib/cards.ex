@@ -42,4 +42,15 @@ defmodule Cards do
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
+
+  def save_deck(deck, filename) do
+    {:ok, file} = File.open filename, [:write]
+    IO.binwrite(file, Enum.join(deck, ","))
+    File.close file
+  end
+
+  def load_deck(filename) do
+    {:ok, data} = File.read filename
+    String.split(data, ",")
+  end
 end
