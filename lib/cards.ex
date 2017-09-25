@@ -38,4 +38,8 @@ defmodule Cards do
     deck = tl(deck)
     deal(deck, hand, number_of_cards_to_deal - 1)
   end
+
+  def contains?(deck, card) do
+    Enum.member?(deck, card)
+  end
 end

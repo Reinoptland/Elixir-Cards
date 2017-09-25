@@ -17,6 +17,12 @@ defmodule CardsTest do
   end
 
   test "deal a number of cards from a deck" do
+    # more advanced
     assert Cards.deal(["Ace", "Two", "Three"],[] , 2) == %{:deck => ["Three"], :hand => ["Two", "Ace"]}
+  end
+
+  test "checks if a deck contains a certain card" do
+    assert Cards.contains?(["Ace", "Two", "Three"], "Ace") == true
+    assert Cards.contains?(["Ace", "Two", "Three"], "King") == false
   end
 end
