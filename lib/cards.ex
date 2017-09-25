@@ -24,4 +24,18 @@ defmodule Cards do
   def shuffle(deck) do
     Enum.take_random(deck, length(deck))
   end
+
+  def deal([head | tail]) do
+    %{:deck => tail, :hand => [head]}
+  end
+
+  def deal(deck, hand, 0) do
+    %{:deck => deck, :hand => hand}
+  end
+
+  def deal(deck, hand, number_of_cards_to_deal) do
+    hand = [hd(deck) | hand]
+    deck = tl(deck)
+    deal(deck, hand, number_of_cards_to_deal - 1)
+  end
 end
