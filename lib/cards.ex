@@ -6,10 +6,11 @@ defmodule Cards do
   @doc """
   Hello world.
 
+  RJJ: Wow you can write tests in here!
   ## Examples
 
       iex> Cards.hello
-      :world
+      "hi there"
 
   """
   def hello do
