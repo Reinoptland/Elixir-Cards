@@ -42,4 +42,10 @@ defmodule CardsTest do
     File.rm("deck_1")
     assert Cards.load_deck_prettier("deck_1") == "That file does not exist"
   end
+
+  test "create a deck and deal a shuffled hand from it of a certain size" do
+    {hand, deck} = Cards.deal_hand_from_new_shuffled_deck(5)
+    assert length(hand) == 5
+    assert hand != ["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades", "Five of Spades"newssert length(deck) == 15
+  end
 end

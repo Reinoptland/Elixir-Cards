@@ -135,10 +135,18 @@ defmodule Cards do
   #   end
   # end
 
+  # prettier tutorial solutions for load deck
   def load_deck_prettier(filename) do
     case File.read(filename) do
       {:ok, binary} -> :erlang.binary_to_term binary
       {:error, _reason} -> "That file does not exist"
     end
+  end
+
+  # My solution
+  def deal_hand_from_new_shuffled_deck(hand_size) do
+    create_deck_advanced
+    |> shuffle
+    |> pretty_deal(hand_size)
   end
 end
