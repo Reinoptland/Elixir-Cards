@@ -21,17 +21,12 @@ defmodule Cards do
     ["Ace", "Two", "Three"]
   end
 
-  # My solution
+  # --------- Without the tutorial -----------
+
   def shuffle(deck) do
     Enum.take_random(deck, length(deck))
   end
 
-  # According to tutorial (duh!)
-  # def shuffle(deck) do
-  #   Enum.shuffle(deck)
-  # end
-
-  # My solution (tutorial solution is the same)
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
@@ -60,8 +55,14 @@ defmodule Cards do
     {:ok, data} = File.read filename
     String.split(data, ",")
   end
+  # --------- Now with the tutorial -----------
 
-  # My solution (does not work)
+  # According to tutorial (duh!)
+  # def shuffle(deck) do
+  #   Enum.shuffle(deck)
+  # end
+
+  # My "solution" (does not work)
   # def create_deck_advanced do
   #   values = ["Ace", "Two", "Three", "Four", "Five"]
   #   suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
@@ -71,14 +72,50 @@ defmodule Cards do
   #   deck
   # end
 
+  # "Bad" example with nested comprehension
+  # def create_deck_advanced do
+  #   values = ["Ace", "Two", "Three", "Four", "Five"]
+  #   suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
+  #
+  #   cards = for suit <- suits do
+  #     for value <- values do
+  #       "#{value} of #{suit}"
+  #     end
+  #   end
+  #   returns [[cards], [cards], [cards], [cards]]
+  #   List.flatten(cards)
+  # end
+
+  @doc """
+  Create deck advanced (tutorial solution)
+  pretty hard to fit the deck on one line
+  ## Examples
+
+      iex> Cards.create_deck_advanced
+      ["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades", "Five of Spades", "Ace of Clubs", "Two of Clubs", "Three of Clubs", "Four of Clubs", "Five of Clubs", "Ace of Hearts", "Two of Hearts", "Three of Hearts", "Four of Hearts", "Five of Hearts", "Ace of Diamonds", "Two of Diamonds", "Three of Diamonds", "Four of Diamonds", "Five of Diamonds"]
+
+  """
   def create_deck_advanced do
     values = ["Ace", "Two", "Three", "Four", "Five"]
     suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
-    for suit <- suits do
-      for value <- values do
-        "#{value} of #{suit}"
-      end
+    for suit <- suits, value <- values do
+      "#{value} of #{suit}"
     end
   end
+
+  @doc """
+  pretty_deal (tutorial solution)
+  ## Examples
+
+      iex> Cards.create_deck_advanced |> Cards.pretty_deal(5)
+      {["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades", "Five of Spades"], ["Ace of Clubs", "Two of Clubs", "Three of Clubs", "Four of Clubs", "Five of Clubs", "Ace of Hearts", "Two of Hearts", "Three of Hearts", "Four of Hearts", "Five of Hearts", "Ace of Diamonds", "Two of Diamonds", "Three of Diamonds", "Four of Diamonds", "Five of Diamonds"]}
+
+  """
+
+  # According to tutorial (duh!)
+  def pretty_deal(deck, hand_size) do
+    Enum.split(deck, hand_size)
+  end
+  # returns a tuple -> {hand, deck(remainder)}
 end
