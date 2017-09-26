@@ -35,11 +35,11 @@ defmodule CardsTest do
   test "save a deck by writing it to a file and load it again (pretty)" do
     File.rm("deck_1")
     assert Cards.save_deck_pretty(["Ace", "Two", "Three"], "deck_1") == :ok
-    assert Cards.load_deck_pretty("deck_1") == ["Ace", "Two", "Three"]
+    assert Cards.load_deck_prettier("deck_1") == ["Ace", "Two", "Three"]
   end
 
   test "give an error when a loading a deck from a file that does not exist" do
     File.rm("deck_1")
-    assert Cards.load_deck_pretty("deck_1") == "That file does not exist"
+    assert Cards.load_deck_prettier("deck_1") == "That file does not exist"
   end
 end
