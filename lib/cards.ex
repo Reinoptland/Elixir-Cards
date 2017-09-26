@@ -118,4 +118,20 @@ defmodule Cards do
     Enum.split(deck, hand_size)
   end
   # returns a tuple -> {hand, deck(remainder)}
+
+  # tutorial solution for save_deck uses an erlang method for formatting
+  def save_deck_pretty(deck, filename) do
+    binary = :erlang.term_to_binary(deck)
+    File.write(filename, binary)
+  end
+
+  # tutorial solution for load deck
+  def load_deck_pretty(filename) do
+    {status, binary } = File.read(filename)
+
+    case status do
+      :ok -> :erlang.binary_to_term(binary)
+      :error -> "That file does not exist"
+    end
+  end
 end
